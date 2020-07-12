@@ -1,16 +1,18 @@
 //esculta em realtime o value do input
 // var input = document.getElementById('aresta') as HTMLInputElement;
 //     input.addEventListener('input', function() {
-//     console.log('input', this.value);
+//      console.log('input', this.value);
 //     });
 
 let submit = document.querySelector('button') as HTMLInputElement; 
+
 let polygon = document.getElementById('select-polygon') as HTMLSelectElement ;
 let input = document.getElementById('arestas') as HTMLInputElement; //input od edge
 //let regexNumbers = /^[0-9]+$/;
 let amoutEdge = 0;
 
 polygon.onclick = () => {
+
     let edge = polygon.options[polygon.selectedIndex].value; //get courrent value selected
     
     if(edge == 'outro'){
@@ -23,11 +25,22 @@ polygon.onclick = () => {
             input?.classList.add('d-none');
             submit?.classList.add('d-none');
         }
-    }
-
-    amoutEdge = parseInt(edge);
-    console.log(amoutEdge)
+    }if(edge == 'retangulo'){
+        amoutEdge = 4;
+    }  
+    amoutEdge = parseInt(edge) //do input vem uma string
 }
+
+input.addEventListener('input', function() {
+    let filter = /^[0-9]+$/;
+    let edge = this.value;
+    if(!filter.test(edge)){
+       input.value = edge.substring(0,0);
+    }if(edge.length > 2){
+        input.value = edge.substring(2,0);
+    }
+    amoutEdge = parseInt(input.value);
+})
 
 submit.onclick = () => {
     amoutEdge = parseInt(input?.value);

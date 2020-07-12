@@ -1,7 +1,7 @@
 //esculta em realtime o value do input
 // var input = document.getElementById('aresta') as HTMLInputElement;
 //     input.addEventListener('input', function() {
-//     console.log('input', this.value);
+//      console.log('input', this.value);
 //     });
 var submit = document.querySelector('button');
 var polygon = document.getElementById('select-polygon');
@@ -22,9 +22,22 @@ polygon.onclick = function () {
             submit === null || submit === void 0 ? void 0 : submit.classList.add('d-none');
         }
     }
-    amoutEdge = parseInt(edge);
-    console.log(amoutEdge);
+    if (edge == 'retangulo') {
+        amoutEdge = 4;
+    }
+    amoutEdge = parseInt(edge); //do input vem uma string
 };
+input.addEventListener('input', function () {
+    var filter = /^[0-9]+$/;
+    var edge = this.value;
+    if (!filter.test(edge)) {
+        input.value = edge.substring(0, 0);
+    }
+    if (edge.length > 2) {
+        input.value = edge.substring(2, 0);
+    }
+    amoutEdge = parseInt(input.value);
+});
 submit.onclick = function () {
     amoutEdge = parseInt(input === null || input === void 0 ? void 0 : input.value);
     console.log(amoutEdge);
