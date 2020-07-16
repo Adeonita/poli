@@ -36,6 +36,7 @@ if (canvas.getContext) {
 var amoutEdge;
 select.onclick = function () {
     var edge = select.options[select.selectedIndex].value; //get courrent value selected
+    var divNumberOfEdge = document.getElementById('div-number-of-edges');
     var singleInputDiv = document.getElementById('single-input-div');
     var descriptionCircle = document.getElementById('description-circle');
     var descriptionOthers = document.getElementById('description-others');
@@ -51,6 +52,8 @@ select.onclick = function () {
     var labelHeight = document.getElementById('label-height');
     var descriptionDoubleInput = document.getElementById('description-double-input');
     if (edge == '42') { //Se for retangulo
+        divNumberOfEdge === null || divNumberOfEdge === void 0 ? void 0 : divNumberOfEdge.classList.remove('d-block');
+        divNumberOfEdge === null || divNumberOfEdge === void 0 ? void 0 : divNumberOfEdge.classList.add('d-none');
         if (singleInputDiv === null || singleInputDiv === void 0 ? void 0 : singleInputDiv.classList.contains('d-block')) {
             singleInputDiv === null || singleInputDiv === void 0 ? void 0 : singleInputDiv.classList.remove('d-block');
             singleInputDiv === null || singleInputDiv === void 0 ? void 0 : singleInputDiv.classList.add('d-none');
@@ -68,6 +71,8 @@ select.onclick = function () {
             doubleInputDiv.classList.add('d-none');
         }
         if (edge != '0') {
+            divNumberOfEdge === null || divNumberOfEdge === void 0 ? void 0 : divNumberOfEdge.classList.remove('d-block');
+            divNumberOfEdge === null || divNumberOfEdge === void 0 ? void 0 : divNumberOfEdge.classList.add('d-none');
             if (edge == '1') {
                 descriptionCircle === null || descriptionCircle === void 0 ? void 0 : descriptionCircle.classList.remove('d-none');
                 descriptionOthers === null || descriptionOthers === void 0 ? void 0 : descriptionOthers.classList.add('d-none');
@@ -78,6 +83,29 @@ select.onclick = function () {
             }
             singleInputDiv === null || singleInputDiv === void 0 ? void 0 : singleInputDiv.classList.add('d-block');
         }
+        else { //inserir quantidade de arestas
+            divNumberOfEdge === null || divNumberOfEdge === void 0 ? void 0 : divNumberOfEdge.classList.remove('d-none');
+            singleInputDiv === null || singleInputDiv === void 0 ? void 0 : singleInputDiv.classList.remove('d-block');
+            singleInputDiv === null || singleInputDiv === void 0 ? void 0 : singleInputDiv.classList.add('d-none');
+            doubleInputDiv === null || doubleInputDiv === void 0 ? void 0 : doubleInputDiv.classList.add('d-none');
+            btnNumberEdges.onclick = function () {
+                if (inputNumberEdges.value > '1') {
+                    descriptionOthers === null || descriptionOthers === void 0 ? void 0 : descriptionOthers.classList.remove('d-none');
+                    console.log(inputNumberEdges.value);
+                }
+                else if (inputNumberEdges.value == '1') {
+                    descriptionCircle === null || descriptionCircle === void 0 ? void 0 : descriptionCircle.classList.remove('d-none');
+                    console.log(inputNumberEdges.value);
+                }
+                if (inputNumberEdges.value < '1') {
+                    console.log('invalido');
+                }
+                singleInputDiv.classList.remove('d-none');
+            };
+        }
+        btnSingleInput.onclick = function () {
+            console.log("Lado: " + singleInput.value);
+        };
     }
     amoutEdge = edge; //do input vem uma string
     console.log(amoutEdge);

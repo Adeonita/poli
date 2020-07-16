@@ -44,6 +44,7 @@ let amoutEdge;
 select.onclick = () => { //vindo do select
 
     let edge = select.options[select.selectedIndex].value; //get courrent value selected
+    let divNumberOfEdge = document.getElementById('div-number-of-edges');
     let singleInputDiv = document.getElementById('single-input-div');
     let descriptionCircle = document.getElementById('description-circle');
     let descriptionOthers = document.getElementById('description-others');
@@ -60,6 +61,8 @@ select.onclick = () => { //vindo do select
     let descriptionDoubleInput =  document.getElementById('description-double-input');
     
     if(edge == '42'){ //Se for retangulo
+        divNumberOfEdge?.classList.remove('d-block');
+        divNumberOfEdge?.classList.add('d-none');
         if(singleInputDiv?.classList.contains('d-block')){
             singleInputDiv?.classList.remove('d-block');
             singleInputDiv?.classList.add('d-none');
@@ -76,6 +79,9 @@ select.onclick = () => { //vindo do select
             doubleInputDiv.classList.add('d-none');
         }
         if(edge != '0'){ 
+            divNumberOfEdge?.classList.remove('d-block');
+            divNumberOfEdge?.classList.add('d-none');
+
             if(edge == '1'){
                 descriptionCircle?.classList.remove('d-none');
                 descriptionOthers?.classList.add('d-none');
@@ -84,6 +90,28 @@ select.onclick = () => { //vindo do select
                 descriptionOthers?.classList.remove('d-none');
             }
             singleInputDiv?.classList.add('d-block');
+        }else{ //inserir quantidade de arestas
+            divNumberOfEdge?.classList.remove('d-none');
+            singleInputDiv?.classList.remove('d-block');
+            singleInputDiv?.classList.add('d-none');
+            doubleInputDiv?.classList.add('d-none');
+            btnNumberEdges.onclick = () => {
+                if( inputNumberEdges.value > '1' ){
+                    descriptionOthers?.classList.remove('d-none');
+                    console.log(inputNumberEdges.value);
+                }else
+                    if( inputNumberEdges.value == '1' ){
+                        descriptionCircle?.classList.remove('d-none');
+                        console.log(inputNumberEdges.value);
+
+                    }if( inputNumberEdges.value < '1' ){
+                        console.log('invalido')
+                    }
+                singleInputDiv.classList.remove('d-none');
+            }
+        }
+        btnSingleInput.onclick = () => {
+            console.log(`Lado: ${singleInput.value}`)
         }
     }
   
