@@ -36,23 +36,40 @@
                    <!-- placeholder for values -->
                   </select>
                   <div  class="row">
-                    <div id="input-arestas" class="col-6">
-                      <input type="text" id="arestas" class="d-none form-control w-50 mt-2 mb-2">
-                      <button type="button" class="d-none btn btn-outline-secondary btn-sm ml-2 ">Submit</button>
+                    <div class="col-6">
+                      <input type="text" id="input-number-of-edges" class="d-none form-control w-50 mt-2 mb-2">
+                      <button type="button" id="btn-number-of-edges" class="d-none btn btn-outline-secondary btn-sm ml-2 ">Submit</button>
                     </div>
                   </div>
                   <div  class="row">
-                    <div id="placeholder-regular-measures" class="col-6">
+                    <div class="col-6">
                       <input type="text" id="input-regular-measures" class="d-none form-control w-50 mt-2 mb-2">
                       <button id="btn-regular-measures" type="button" class="d-none btn btn-outline-secondary btn-sm ml-2 ">Submit</button>
                     </div>
                   </div>
-
+                  <div id="single-input-div" class="row d-none">
+                    <div class="col-8">
+                      <p id="description-circle" class="mt-2 d-none">Insira o raio</p>
+                      <p id="description-others" class="mt-2 d-none">Insira a medida do lado</p>
+                      <input type="text" id="single-input" class=" form-control w-50 mt-2 mb-2 d-inline">
+                      <button id="btn-single-input" type="button" class=" btn btn-outline-secondary btn-sm ml-2 ">Submit</button>
+                    </div>
+                  </div>
+                   <div id="double-input-div" class="row d-none"> <!--input para retangulo -->
+                    <div class="col-12">
+                      <p id="description-double-input" class="mt-2">Insira as medidas</p>
+                      <label id="label-base" for="double-input-base" >B:</label>
+                      <input type="text" id="double-input-base" class=" form-control w-25 mb-2 d-inline">
+                      <label id="label-height" for="double-input-height" >H:</label>
+                      <input type="text" id="double-input-height" class=" form-control w-25 mb-2 d-inline">
+                      <button id="btn-double-input" type="button" class="btn btn-outline-secondary btn-sm ml-2 ">Submit</button>
+                    </div>
+                  </div>
             </div>
         <div>
     </div>
     <div class="container">
-      <canvas id="canvas" >
+      <canvas id="canvas" class="mt-2 mb-2" >
         canvas Element
       </canvas>
     </div>
