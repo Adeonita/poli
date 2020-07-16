@@ -3,16 +3,16 @@
 //     input.addEventListener('input', function() {
 //      console.log('input', this.value);
 //     });
-var submit = document.querySelector('button');
+var inputNumberEdges = document.getElementById('input-number-of-edges'); //input od edge
+var btnNumberEdges = document.getElementById('btn-number-of-edges'); //submit
 var select = document.getElementById('select-polygon');
-var input = document.getElementById('arestas'); //input od edge
 var canvas = document.getElementById('canvas');
 var figure = [
     { name: 'Circle', value: 1 },
     { name: 'Triangle', value: 3 },
     { name: 'Squad', value: 4 },
     { name: 'Rectangle', value: 42 },
-    { name: 'Others', value: 0 },
+    { name: 'Others figures', value: 0 },
 ];
 for (var _i = 0, figure_1 = figure; _i < figure_1.length; _i++) {
     var option = figure_1[_i];
@@ -36,51 +36,106 @@ if (canvas.getContext) {
 var amoutEdge;
 select.onclick = function () {
     var edge = select.options[select.selectedIndex].value; //get courrent value selected
-    var placeholderRegularMeasures = document.getElementById('placeholder-regular-measures'); //placeholder para input do tamanho das arestas
+    var singleInputDiv = document.getElementById('single-input-div');
+    var descriptionCircle = document.getElementById('description-circle');
+    var descriptionOthers = document.getElementById('description-others');
+    var singleInput = document.getElementById('single-input'); //para poligonos regulares
+    var btnSingleInput = document.getElementById('btn-single-input');
+    var doubleInputDiv = document.getElementById('double-input-div');
+    var doubleInputBase = document.getElementById('double-input-base'); //para retângulos
+    var doubleInputHeight = document.getElementById('double-input-height'); //para retângulos
+    var btnDoubleInput = document.getElementById('btn-double-input');
     var inputRegularMeasures = document.getElementById('input-regular-measures'); //o proprio input
     var btnRegularMeasures = document.getElementById('btn-regular-measures');
-    if (edge == '0') {
-        submit === null || submit === void 0 ? void 0 : submit.classList.remove('d-none');
-        input === null || input === void 0 ? void 0 : input.classList.remove('d-none');
-        input === null || input === void 0 ? void 0 : input.classList.add('d-inline-block');
-    }
-    else {
-        if (!(input === null || input === void 0 ? void 0 : input.classList.contains('d-none'))) {
-            input === null || input === void 0 ? void 0 : input.classList.remove('d-inline-block');
-            input === null || input === void 0 ? void 0 : input.classList.add('d-none');
-            submit === null || submit === void 0 ? void 0 : submit.classList.add('d-none');
+    var labelBase = document.getElementById('label-base');
+    var labelHeight = document.getElementById('label-height');
+    var descriptionDoubleInput = document.getElementById('description-double-input');
+    if (edge == '42') { //Se for retangulo
+        if (singleInputDiv === null || singleInputDiv === void 0 ? void 0 : singleInputDiv.classList.contains('d-block')) {
+            singleInputDiv === null || singleInputDiv === void 0 ? void 0 : singleInputDiv.classList.remove('d-block');
+            singleInputDiv === null || singleInputDiv === void 0 ? void 0 : singleInputDiv.classList.add('d-none');
         }
-    }
-    if (edge == '4') {
-        inputRegularMeasures === null || inputRegularMeasures === void 0 ? void 0 : inputRegularMeasures.classList.remove('d-none');
-        inputRegularMeasures === null || inputRegularMeasures === void 0 ? void 0 : inputRegularMeasures.classList.add('d-inline-block');
-        btnRegularMeasures === null || btnRegularMeasures === void 0 ? void 0 : btnRegularMeasures.classList.remove('d-none');
-        btnRegularMeasures.onclick = function () {
-            console.log(inputRegularMeasures === null || inputRegularMeasures === void 0 ? void 0 : inputRegularMeasures.value);
+        doubleInputDiv === null || doubleInputDiv === void 0 ? void 0 : doubleInputDiv.classList.add('d-block');
+        btnDoubleInput.onclick = function () {
+            var dib = doubleInputBase.value;
+            var dih = doubleInputHeight.value;
+            console.log("Base: " + dib + " Altura: " + dih);
         };
     }
-    else {
-        if (!(inputRegularMeasures === null || inputRegularMeasures === void 0 ? void 0 : inputRegularMeasures.classList.contains('d-none'))) {
-            inputRegularMeasures === null || inputRegularMeasures === void 0 ? void 0 : inputRegularMeasures.classList.remove('d-inline-block');
-            inputRegularMeasures === null || inputRegularMeasures === void 0 ? void 0 : inputRegularMeasures.classList.add('d-none');
-            btnRegularMeasures === null || btnRegularMeasures === void 0 ? void 0 : btnRegularMeasures.classList.add('d-none');
+    else { //Se for qualquer outra figura
+        if (doubleInputDiv === null || doubleInputDiv === void 0 ? void 0 : doubleInputDiv.classList.contains('d-block')) {
+            doubleInputDiv.classList.remove('d-block');
+            doubleInputDiv.classList.add('d-none');
+        }
+        if (edge != '0') {
+            if (edge == '1') {
+                descriptionCircle === null || descriptionCircle === void 0 ? void 0 : descriptionCircle.classList.remove('d-none');
+                descriptionOthers === null || descriptionOthers === void 0 ? void 0 : descriptionOthers.classList.add('d-none');
+            }
+            else {
+                descriptionCircle === null || descriptionCircle === void 0 ? void 0 : descriptionCircle.classList.add('d-none');
+                descriptionOthers === null || descriptionOthers === void 0 ? void 0 : descriptionOthers.classList.remove('d-none');
+            }
+            singleInputDiv === null || singleInputDiv === void 0 ? void 0 : singleInputDiv.classList.add('d-block');
+        }
+        btnSingleInput.onclick = () => {
+            console.log(singleInput.value);
         }
     }
+    // if(edge == '0'){
+    //     btnNumberEdges?.classList.remove('d-none');
+    //     inputNumberEdges?.classList.remove('d-none');
+    //     inputNumberEdges?.classList.add('d-inline-block');
+    // } else {
+    //     if( !inputNumberEdges?.classList.contains('d-none') ) {
+    //         inputNumberEdges?.classList.remove('d-inline-block');
+    //         inputNumberEdges?.classList.add('d-none');
+    //         btnNumberEdges?.classList.add('d-none');
+    //     }
+    // }if(edge == '42'){
+    //     // inputRegularMeasures?.classList.remove('d-none');
+    //     // inputRegularMeasures?.classList.add('d-inline-block');
+    //     // btnRegularMeasures?.classList.remove('d-none');
+    //     // btnRegularMeasures.onclick = () => {
+    //     //     console.log(inputRegularMeasures?.value)
+    //     // }
+    //     inputRegularMeasures?.classList.remove('d-inline-block');
+    //     inputRegularMeasures?.classList.add('d-none');
+    //     btnRegularMeasures?.classList.add('d-none');
+    //     doubleInputBase.classList.remove('d-none');
+    //     doubleInputBase.classList.add('d-inline');
+    //     doubleInputHeight.classList.remove('d-none');
+    //     doubleInputHeight.classList.add('d-inline');
+    //     //remove o anterior
+    // }else{
+    //     inputRegularMeasures?.classList.remove('d-none');
+    //     inputRegularMeasures?.classList.add('d-inline-block');
+    //     btnRegularMeasures?.classList.remove('d-none');
+    //     btnRegularMeasures.onclick = () => {
+    //         console.log(inputRegularMeasures?.value)
+    //     }
+    //     doubleInputBase.classList.add('d-none');
+    //     // if( !inputRegularMeasures?.classList.contains('d-none') ){
+    //     //     inputRegularMeasures?.classList.remove('d-inline-block');
+    //     //     inputRegularMeasures?.classList.add('d-none');
+    //     //     btnRegularMeasures?.classList.add('d-none');
+    //     // }
+    // }
     amoutEdge = edge; //do input vem uma string
     console.log(amoutEdge);
 };
-input.addEventListener('input', function () {
+inputNumberEdges.addEventListener('input', function () {
     var filter = /^[0-9]+$/;
     var edge = this.value;
     if (!filter.test(edge)) {
-        input.value = edge.substring(0, 0);
+        inputNumberEdges.value = edge.substring(0, 0);
     }
     if (edge.length > 2) {
-        input.value = edge.substring(2, 0);
+        inputNumberEdges.value = edge.substring(2, 0);
     }
-    amoutEdge = parseInt(input.value);
+    amoutEdge = parseInt(inputNumberEdges.value);
 });
-submit.onclick = function () {
-    amoutEdge = parseInt(input === null || input === void 0 ? void 0 : input.value);
+btnNumberEdges.onclick = function () {
+    amoutEdge = parseInt(inputNumberEdges === null || inputNumberEdges === void 0 ? void 0 : inputNumberEdges.value);
     console.log(amoutEdge);
 };
